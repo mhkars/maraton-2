@@ -6,20 +6,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class Kiralama {
+public class Kiralama implements IRepository {
 
-	Map<Kitap, Musteri> rentedBooks = new HashMap<Kitap, Musteri>();
+	public Map<Kitap, Musteri> rentedBooks = new HashMap<Kitap, Musteri>();
 	List<Kitap> books = new ArrayList<Kitap>();
 	List<Musteri> customers = new ArrayList<Musteri>();
 	List<Kasiyer> cashiers = new ArrayList<Kasiyer>();
 	Random rd = new Random();
 
+	@Override
 	public void kiralananKitapListesi() {
 
 		rentedBooks.entrySet().forEach(s -> System.out.println(s));
 
 	}
 
+	@Override
 	public void müşteriAra(String no) {
 		for (int i = 0; i < customers.size(); i++) {
 			if (customers.get(i).getTckn().equals(no)) {
@@ -31,6 +33,7 @@ public class Kiralama {
 		System.out.println("The customer doesnt exist.");
 	}
 
+	@Override
 	public void kitapAra(String title) {
 		Kitap bk1 = null;
 		for (int i = 0; i < books.size(); i++) {
@@ -49,6 +52,7 @@ public class Kiralama {
 		System.out.println("The book title doesnt exist in library.");
 	}
 
+	@Override
 	public void kiralamaYap() {
 		Musteri rdCs = customers.get(rd.nextInt(customers.size()));
 		Kitap rdBk = books.get(rd.nextInt(books.size()));
